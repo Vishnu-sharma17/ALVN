@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Anlee Export Ventures – Green Coffee Exporters</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --accent: #145d6b;
+      --accent-soft: #1f7c8f;
+      --accent-dark: #0c3942;
+      --accent-gold: #c79b4a;
+      --text: #172027;
+      --card: #ffffff;
+      --border-soft: #d4dde5;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      background: #ffffffee;
+      border-bottom: 1px solid #dde4ec;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 1.5rem;
+    }
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 25% 15%, #fdfdfd, #145d6b);
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-logo::after {
+      content: "";
+      position: absolute;
+      inset: 22%;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+    .brand-text-main {
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: var(--accent-dark);
+    }
+    .brand-text-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #6b7a88;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-left: 1.5rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5966;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover {
+      color: var(--accent-dark);
+    }
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.1s,
+        box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 10px 26px rgba(9, 54, 63, 0.35);
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(7, 40, 47, 0.45);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent-dark);
+      border: 1px solid #c2cfdb;
+    }
+    .btn-ghost:hover {
+      background: #edf1f6;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.6rem;
+      align-items: center;
+      padding: 2.2rem 0 2.7rem;
+    }
+    .hero-badge-row {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-badge-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.24rem 0.85rem;
+      border-radius: 999px;
+      background: #e0f4f7;
+      color: #0a5464;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+    }
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #26a69a;
+    }
+    .hero-badge-note {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7a88;
+    }
+    .hero-title {
+      font-size: clamp(2.3rem, 3.9vw, 3.1rem);
+      line-height: 1.05;
+      margin-bottom: 0.95rem;
+      color: var(--accent-dark);
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      max-width: 34rem;
+      margin-bottom: 1.55rem;
+      color: #43525f;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.82rem;
+      color: #607082;
+    }
+    .hero-meta-item span {
+      display: block;
+    }
+    .hero-meta-label {
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-size: 0.7rem;
+      color: #7f90a1;
+    }
+    .hero-meta-value {
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    .hero-visual {
+      display: grid;
+      gap: 1rem;
+    }
+    .hero-main-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 1.7rem;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 20%, #e8f5f7, #145d6b);
+      box-shadow: 0 26px 70px rgba(7, 40, 47, 0.4);
+    }
+    .hero-main-inner {
+      position: absolute;
+      inset: 8%;
+      border-radius: 1.4rem;
+      background: linear-gradient(135deg, #0d3942, #1f7c8f);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      padding: 1.5rem;
+      gap: 1rem;
+      color: #f3f7fa;
+    }
+    .hero-main-top {
+      display: flex;
+      gap: 1.1rem;
+      align-items: stretch;
+    }
+    .hero-map {
+      flex: 1.1;
+      border-radius: 1.2rem;
+      background-image: url("https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=60");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-map::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(0,0,0,0.15), transparent 60%);
+    }
+    .hero-lot {
+      flex: 0.8;
+      border-radius: 1.2rem;
+      background: #0c2a32;
+      padding: 1rem;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+    }
+    .hero-lot-label {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.68rem;
+      color: #9fb6c4;
+    }
+    .hero-lot-heading {
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+    .hero-lot-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+      font-size: 0.76rem;
+      color: #b7c8d3;
+    }
+    .hero-lot-pill {
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      background: #145d6b;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .hero-main-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.78rem;
+      color: #d5e2ec;
+    }
+    .hero-main-bottom span strong {
+      color: var(--accent-gold);
+    }
+    .hero-tag {
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      background: #0b252c;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .hero-thumbs {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .hero-thumb {
+      flex: 0 0 86px;
+      height: 86px;
+      border-radius: 1rem;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-thumb:nth-child(1) {
+      background-image: url("https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=400&q=60");
+    }
+    .hero-thumb:nth-child(2) {
+      background-image: url("https://images.unsplash.com/photo-1502462041640-b3d7e50d0660?auto=format&fit=crop&w=400&q=60");
+    }
+    .hero-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.32), transparent 55%);
+    }
+
+    /* Promo band */
+    .promo-band {
+      margin: 1rem 0 2.4rem;
+      padding: 1rem 1.5rem;
+      border-radius: 1.1rem;
+      background: #0c3942;
+      color: #f4f7fb;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .promo-text {
+      font-size: 0.96rem;
+    }
+    .promo-highlight {
+      font-weight: 600;
+      color: var(--accent-gold);
+    }
+    .promo-sub {
+      font-size: 0.8rem;
+      color: #c7d4df;
+      margin-top: 0.1rem;
+    }
+
+    /* Sections */
+    .section {
+      margin: 3rem 0;
+    }
+    .section-header {
+      margin-bottom: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .section-title {
+      font-size: 1.45rem;
+      color: var(--accent-dark);
+    }
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: #4e5f6f;
+      max-width: 30rem;
+    }
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.75rem;
+      color: #7b8b9c;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Product / variety cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.6rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 1.25rem;
+      padding: 1.1rem 1.1rem 1.3rem;
+      box-shadow: 0 8px 24px rgba(24, 33, 40, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border: 1px solid var(--border-soft);
+    }
+    .card-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 0.9rem;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 0.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.28),
+        transparent 45%
+      );
+    }
+    .card-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #7b8b9c;
+    }
+    .card-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+    .card-body {
+      font-size: 0.9rem;
+      color: #455462;
+    }
+    .card-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+      font-size: 0.83rem;
+      color: #607082;
+    }
+    .pill-small {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #cfd9e4;
+      color: #4d5e6e;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Info / process */
+    .info-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.1rem;
+      align-items: start;
+    }
+    .info-text p {
+      margin-bottom: 0.9rem;
+      color: #3b4853;
+      font-size: 0.95rem;
+    }
+    .info-badge {
+      display: inline-block;
+      padding: 0.1rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #c4d0dd;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #607082;
+      margin-bottom: 0.7rem;
+    }
+    .info-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: #455462;
+    }
+    .info-point-title {
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 0.25rem;
+    }
+    .info-box {
+      background: #f8fafc;
+      border-radius: 1.25rem;
+      padding: 1.1rem 1.1rem 1.2rem;
+      border: 1px solid #d4dde5;
+      font-size: 0.9rem;
+      color: #3b4853;
+    }
+    .info-highlight {
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 0.5rem;
+    }
+    .process-steps {
+      margin-top: 0.9rem;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.86rem;
+      color: #455462;
+    }
+    .process-step-label {
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 1.5rem 2.6rem;
+      background: #121a21;
+      color: #d8e1ea;
+      margin-top: 3rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.1rem;
+      font-size: 0.85rem;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-links a {
+      color: #a9b7c4;
+      text-decoration: none;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .hero,
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero {
+        padding-top: 1.6rem;
+      }
+      .hero-visual {
+        max-width: 420px;
+        margin-inline: auto;
+      }
+    }
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 1rem;
+      }
+      .nav {
+        padding-inline: 1rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .promo-band {
+        padding-inline: 1rem;
+      }
+      .hero-thumbs {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="nav container">
+      <div class="nav-left">
+        <div class="brand-mark">
+          <div class="brand-logo"></div>
+          <div>
+            <div class="brand-text-main">ANLEE EXPORT VENTURES</div>
+            <div class="brand-text-sub">green coffee exporters</div>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="#varieties">Varieties</a>
+          <a href="#quality">Quality</a>
+          <a href="#logistics">Logistics</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="nav-right">
+        <a href="download.html"<button class="btn btn-ghost">Refertorial Invoice</button></a>
+        <button class="btn btn-primary">Request offer list</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-badge-row">
+          <div class="hero-badge-main">
+            <span class="hero-badge-dot"></span>
+            <span>Export‑grade Arabica & Robusta</span>
+          </div>
+          <div class="hero-badge-note">Origin‑direct lots • QC at source</div>
+        </div>
+        <h1 class="hero-title">
+          Reliable green coffee supply for roasters who cannot afford surprises.
+        </h1>
+        <p class="hero-subtitle">
+          Anlee Export Ventures sources, cups, and ships traceable Arabica and Robusta so your roasting schedule runs on data, not guesswork.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary">Get current offer list</button>
+          <button class="btn btn-ghost">Schedule a sourcing call</button>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Origins</span>
+            <span class="hero-meta-value">Key Arabica & Robusta‑producing regions</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Shipment sizes</span>
+            <span class="hero-meta-value">From pallet quantities to full containers</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Documentation</span>
+            <span class="hero-meta-value">Export, phytosanitary & custom specs handled</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-main-image">
+          <div class="hero-main-inner">
+            <div class="hero-main-top">
+              <div class="hero-map"></div>
+              <div class="hero-lot">
+                <div class="hero-lot-label">Sample contract lot</div>
+                <div class="hero-lot-heading">
+                  18.5 MT washed Arabica – current crop.
+                </div>
+                <div>
+                  Screen 15+, moisture 11.5%, uniform cup, export‑ready.
+                </div>
+                <div class="hero-lot-meta">
+                  <span>FOB terms, major port.</span>
+                  <span class="hero-lot-pill">QC approved</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-main-bottom">
+              <span>From farm cluster to <strong>roastery door</strong> with transparent quality steps.</span>
+              <span class="hero-tag">Anlee export workflow</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-thumbs">
+          <div class="hero-thumb"></div>
+          <div class="hero-thumb"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMO / VALUE PROP -->
+    <section class="promo-band">
+      <div>
+        <div class="promo-text">
+          <span class="promo-highlight">New buyer?</span>
+          Start with calibrated samples of both Arabica and Robusta, matched to your roasting profile.
+        </div>
+        <div class="promo-sub">
+          Tell Anlee Export Ventures how you roast and what you cup for. You get targeted samples, not random bags.
+        </div>
+      </div>
+      <button class="btn btn-primary">Request calibrated samples</button>
+    </section>
+
+    <!-- VARIETIES: ARABICA & ROBUSTA -->
+    <section id="varieties" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Green coffee portfolio</div>
+          <h2 class="section-title">Two core coffees, built for different jobs.</h2>
+        </div>
+        <p class="section-subtitle">
+          Anlee focuses on export‑grade Arabica and Robusta so you can design blends with predictable behavior, from specialty espresso to commercial lines.
+        </p>
+      </div>
+      <div class="card-grid">
+        <!-- ARABICA -->
+        <article class="card">
+          <div
+            class="card-image"
+            style="background-image:url('https://images.unsplash.com/photo-1459755486867-b55449bb39ff?auto=format&fit=crop&w=800&q=60');"
+          ></div>
+          <div class="card-label">Arabica</div>
+          <div class="card-title">Washed & natural Arabica lots</div>
+          <p class="card-body">
+            Traceable lots with clean acidity, sweetness, and structure for specialty‑leaning blends, single‑origin releases, and higher‑end retail.
+          </p>
+          <div class="card-meta-row">
+            <span>Typical screen 15+ • Moisture 10.5–12.0%</span>
+            <span class="pill-small">Ideal for specialty & premium blends</span>
+          </div>
+        </article>
+
+        <!-- ROBUSTA -->
+        <article class="card">
+          <div
+            class="card-image"
+            style="background-image:url('https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=800&q=60');"
+          ></div>
+          <div class="card-label">Robusta</div>
+          <div class="card-title">Screened Robusta for body & crema</div>
+          <p class="card-body">
+            Consistent Robusta delivering crema, body, and caffeine for espresso blends and value‑driven roasts without sacrificing cup stability.
+          </p>
+          <div class="card-meta-row">
+            <span>Screen 16+ focus • Moisture within export standards</span>
+            <span class="pill-small">Built for blends & instant</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- QUALITY / PROCESS -->
+    <section id="quality" class="section">
+      <div class="info-grid">
+        <div class="info-text">
+          <div class="info-badge">
+            Quality control at source – not just at the port
+          </div>
+          <h2 class="section-title">
+            Anlee keeps one team accountable from lot selection to loading.
+          </h2>
+          <p>
+            Even high‑grade coffee will underperform if defects slip through. Anlee Export Ventures works with on‑the‑ground teams for physical grading, cupping, and documentation before the coffee reaches the vessel.
+          </p>
+          <p>
+            The result is fewer surprises on arrival, fewer renegotiations, and fewer production delays at your roastery or plant.
+          </p>
+
+          <div class="info-points">
+            <div>
+              <div class="info-point-title">Lot selection</div>
+              <p>
+                Samples pulled and cupped before contracts are locked, aligned with your target profile.
+              </p>
+            </div>
+            <div>
+              <div class="info-point-title">Physical grading</div>
+              <p>
+                Screen size, defects, moisture, and density checked and documented for each lot.
+              </p>
+            </div>
+            <div>
+              <div class="info-point-title">Cup & consistency</div>
+              <p>
+                Random bag checks and comparative cuppings reduce variance between contracts and deliveries.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box" id="logistics">
+          <div class="info-highlight">Export & logistics handled with roasters in mind</div>
+          <div class="process-steps">
+            <div>
+              <span class="process-step-label">1. Define your needs.</span>
+              Share your volumes, cup profile, and delivery windows – Arabica, Robusta, or both.
+            </div>
+            <div>
+              <span class="process-step-label">2. Align on lots.</span>
+              Anlee proposes lots with full specs and samples so you can cup before committing.
+            </div>
+            <div>
+              <span class="process-step-label">3. Ship under clear terms.</span>
+              FOB or CIF negotiations, export paperwork, and phytosanitary requirements are coordinated for you.
+            </div>
+            <div>
+              <span class="process-step-label">4. Keep the pipeline full.</span>
+              Forward planning and call‑off options keep your green coffee pipeline stable as your roasting grows.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section id="contact" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Let’s talk coffee</div>
+          <h2 class="section-title">Ready to plan your next shipment?</h2>
+        </div>
+        <p class="section-subtitle">
+          Whether you are a growing specialty roaster or a large‑scale producer, Anlee Export Ventures can align Arabica and Robusta supply with your strategy.
+        </p>
+      </div>
+      <div class="info-box">
+        <div class="info-highlight">Share the basics and get a tailored offer list:</div>
+        <div class="process-steps">
+          <div>• Expected monthly volume (bags or metric tons).</div>
+          <div>• Ratio of Arabica to Robusta in your current blends.</div>
+          <div>• Destination port and preferred shipment terms.</div>
+          <div>• Key cup profiles or price brackets you are targeting.</div>
+        </div>
+        <p style="margin-top:0.9rem;font-size:0.86rem;color:#4b5a68;">
+          Add a simple contact form or email/phone block here when you integrate this page into your stack.
+        </p>
+        <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.7rem;">
+          <button class="btn btn-primary">Send enquiry</button>
+          <button class="btn btn-ghost">Download company profile</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>© Anlee Export Ventures. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="mailto:export@anleeventures.com">export@anleeventures.com</a>
+        <a href="#">Compliance</a>
+        <a href="#">Shipping</a>
+        <a href="#">Support</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
